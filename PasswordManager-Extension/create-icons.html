@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PwdGuard Icon Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #00bcd4;
+      margin-bottom: 20px;
+    }
+    .icon-preview {
+      display: flex;
+      gap: 20px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+    .icon-item {
+      text-align: center;
+    }
+    canvas {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    button {
+      background: #00bcd4;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px 5px;
+    }
+    button:hover {
+      background: #00acc1;
+    }
+    .info {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 PwdGuard Icon Generator</h1>
+    
+    <div class="info">
+      <strong>Instructions:</strong> This tool generates placeholder icons for the PwdGuard extension. 
+      Click the buttons below to download each icon size. For production, replace these with professionally designed icons.
+    </div>
+
+    <div class="icon-preview" id="icon-preview"></div>
+
+    <div>
+      <button onclick="downloadAll()">Download All Icons</button>
+      <button onclick="downloadAllStates()">Download All States (Gray & Red)</button>
+    </div>
+  </div>
+
+  <script>
+    const sizes = [16, 32, 48, 128];
+    const states = {
+      normal: { color: '#00bcd4', suffix: '' },
+      gray: { color: '#999999', suffix: '-gray' },
+      red: { color: '#f44336', suffix: '-red' }
+    };
+
+    function createIcon(size, color) {
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+
+      // Background
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.roundRect(0, 0, size, size, size * 0.2);
+      ctx.fill();
+
+      // Lock icon
+      const lockSize = size * 0.6;
+      const lockX = (size - lockSize) / 2;
+      const lockY = (size - lockSize) / 2;
+
+      // Lock body
+      ctx.fillStyle = 'white';
+      ctx.fillRect(lockX + lockSize * 0.2, lockY + lockSize * 0.4, lockSize * 0.6, lockSize * 0.5);
+      ctx.beginPath();
+      ctx.roundRect(lockX + lockSize * 0.2, lockY + lockSize * 0.4, lockSize * 0.6, lockSize * 0.5, lockSize * 0.1);
+      ctx.fill();
+
+      // Lock shackle
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth = size * 0.08;
+      ctx.beginPath();
+      ctx.arc(lockX + lockSize * 0.5, lockY + lockSize * 0.35, lockSize * 0.25, Math.PI, 0, true);
+      ctx.stroke();
+
+      // Keyhole
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(lockX + lockSize * 0.5, lockY + lockSize * 0.6, lockSize * 0.08, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillRect(lockX + lockSize * 0.46, lockY + lockSize * 0.6, lockSize * 0.08, lockSize * 0.15);
+
+      return canvas;
+    }
+
+    function displayIcons() {
+      const preview = document.getElementById('icon-preview');
+      preview.innerHTML = '';
+
+      sizes.forEach(size => {
+        const iconItem = document.createElement('div');
+        iconItem.className = 'icon-item';
+
+        const canvas = createIcon(size, states.normal.color);
+        iconItem.appendChild(canvas);
+
+        const label = document.createElement('div');
+        label.textContent = `${size}x${size}`;
+        iconItem.appendChild(label);
+
+        const downloadBtn = document.createElement('button');
+        downloadBtn.textContent = 'Download';
+        downloadBtn.onclick = () => downloadIcon(canvas, `icon${size}.png`);
+        iconItem.appendChild(downloadBtn);
+
+        preview.appendChild(iconItem);
+      });
+    }
+
+    function downloadIcon(canvas, filename) {
+      canvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+    }
+
+    function downloadAll() {
+      sizes.forEach(size => {
+        const canvas = createIcon(size, states.normal.color);
+        setTimeout(() => {
+          downloadIcon(canvas, `icon${size}.png`);
+        }, size * 10);
+      });
+    }
+
+    function downloadAllStates() {
+      Object.entries(states).forEach(([stateName, stateInfo], stateIndex) => {
+        sizes.forEach((size, sizeIndex) => {
+          const canvas = createIcon(size, stateInfo.color);
+          setTimeout(() => {
+            downloadIcon(canvas, `icon${size}${stateInfo.suffix}.png`);
+          }, (stateIndex * sizes.length + sizeIndex) * 200);
+        });
+      });
+    }
+
+    // Polyfill for roundRect if not available
+    if (!CanvasRenderingContext2D.prototype.roundRect) {
+      CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+        this.beginPath();
+        this.moveTo(x + radius, y);
+        this.lineTo(x + width - radius, y);
+        this.quadraticCurveTo(x + width, y, x + width, y + radius);
+        this.lineTo(x + width, y + height - radius);
+        this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        this.lineTo(x + radius, y + height);
+        this.quadraticCurveTo(x, y + height, x, y + height - radius);
+        this.lineTo(x, y + radius);
+        this.quadraticCurveTo(x, y, x + radius, y);
+        this.closePath();
+      };
+    }
+
+    displayIcons();
+  </script>
+</body>
+</html>

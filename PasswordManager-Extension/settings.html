@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PwdGuard Settings</title>
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <div class="settings-container">
+    <!-- Header -->
+    <header class="settings-header">
+      <div class="header-content">
+        <img src="icons/icon48.png" alt="PwdGuard">
+        <h1>PwdGuard Settings</h1>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="settings-main">
+      <!-- General Settings -->
+      <section class="settings-section">
+        <h2>General Settings</h2>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="enabled">Enable Extension</label>
+            <p>Enable or disable password capture and auto-fill functionality</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="enabled" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="autofill">Enable Auto-fill</label>
+            <p>Automatically fill saved credentials on login pages</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="autofill" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="notifications">Enable Notifications</label>
+            <p>Show notifications when passwords are saved or filled</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="notifications" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Security Settings -->
+      <section class="settings-section">
+        <h2>Security Settings</h2>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="https-only">HTTPS Only</label>
+            <p>Only capture passwords on secure HTTPS websites</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="https-only" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="allow-localhost">Allow Localhost</label>
+            <p>Allow password capture on localhost for development</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="allow-localhost" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Never Save List -->
+      <section class="settings-section">
+        <h2>Never Save List</h2>
+        <p class="section-description">Websites where passwords will never be saved</p>
+        
+        <div class="never-save-list" id="never-save-list">
+          <!-- List will be populated by JavaScript -->
+        </div>
+        
+        <div class="add-site-form">
+          <input type="text" id="new-site" placeholder="example.com" class="text-input">
+          <button id="add-site-btn" class="btn btn-primary">Add Site</button>
+        </div>
+      </section>
+
+      <!-- Keyboard Shortcuts -->
+      <section class="settings-section">
+        <h2>Keyboard Shortcuts</h2>
+        
+        <div class="shortcut-list">
+          <div class="shortcut-item">
+            <div class="shortcut-info">
+              <span class="shortcut-label">Auto-fill Credentials</span>
+            </div>
+            <div class="shortcut-keys">
+              <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
+            </div>
+          </div>
+          
+          <div class="shortcut-item">
+            <div class="shortcut-info">
+              <span class="shortcut-label">Save Password</span>
+            </div>
+            <div class="shortcut-keys">
+              <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>
+            </div>
+          </div>
+        </div>
+        
+        <p class="shortcut-note">
+          Note: Use <kbd>Cmd</kbd> instead of <kbd>Ctrl</kbd> on Mac
+        </p>
+      </section>
+
+      <!-- Desktop App Connection -->
+      <section class="settings-section">
+        <h2>Desktop App Connection</h2>
+        
+        <div class="connection-info">
+          <div class="connection-status-large">
+            <div class="status-icon" id="connection-icon">⚠️</div>
+            <div class="status-details">
+              <h3 id="connection-title">Checking Connection...</h3>
+              <p id="connection-message">Testing connection to PwdGuard desktop application</p>
+            </div>
+          </div>
+          
+          <button id="test-connection-btn" class="btn btn-secondary">Test Connection</button>
+        </div>
+        
+        <div class="connection-help">
+          <h4>Connection Issues?</h4>
+          <ul>
+            <li>Make sure the PwdGuard desktop application is installed and running</li>
+            <li>Check that the Native Messaging host is properly configured</li>
+            <li>Try restarting both the extension and desktop application</li>
+            <li>See the <a href="#" id="help-link">installation guide</a> for detailed instructions</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Theme Settings -->
+      <section class="settings-section">
+        <h2>Appearance</h2>
+        
+        <div class="theme-selector">
+          <label class="theme-option">
+            <input type="radio" name="theme" value="light" checked>
+            <div class="theme-preview theme-light">
+              <span>☀️</span>
+              <span>Light</span>
+            </div>
+          </label>
+          
+          <label class="theme-option">
+            <input type="radio" name="theme" value="dark">
+            <div class="theme-preview theme-dark">
+              <span>🌙</span>
+              <span>Dark</span>
+            </div>
+          </label>
+          
+          <label class="theme-option">
+            <input type="radio" name="theme" value="auto">
+            <div class="theme-preview theme-auto">
+              <span>🔄</span>
+              <span>Auto</span>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="settings-section">
+        <h2>About</h2>
+        
+        <div class="about-info">
+          <p><strong>PwdGuard Password Manager Extension</strong></p>
+          <p>Version 1.0.0</p>
+          <p>Secure password manager with desktop app integration</p>
+          
+          <div class="about-links">
+            <a href="#" class="link-btn">Privacy Policy</a>
+            <a href="#" class="link-btn">Terms of Service</a>
+            <a href="#" class="link-btn">Report Issue</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reset Settings -->
+      <section class="settings-section">
+        <h2>Reset</h2>
+        
+        <div class="reset-section">
+          <p>Reset all settings to default values</p>
+          <button id="reset-btn" class="btn btn-danger">Reset to Defaults</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="settings-footer">
+      <p>&copy; 2024 PwdGuard. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

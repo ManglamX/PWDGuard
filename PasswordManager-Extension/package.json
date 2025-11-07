@@ -1,0 +1,38 @@
+{
+  "name": "pwdguard-chrome-extension",
+  "version": "1.0.0",
+  "description": "PwdGuard Password Manager Chrome Extension with Native Messaging",
+  "author": "PwdGuard Team",
+  "license": "MIT",
+  "keywords": [
+    "password-manager",
+    "chrome-extension",
+    "security",
+    "encryption",
+    "auto-fill",
+    "native-messaging"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pwdguard/extension"
+  },
+  "scripts": {
+    "install-host": "node scripts/install-native-host.js",
+    "test": "echo \"No tests configured yet\"",
+    "lint": "echo \"No linting configured yet\""
+  },
+  "files": [
+    "manifest.json",
+    "background.js",
+    "content.js",
+    "content.css",
+    "popup.html",
+    "popup.js",
+    "popup.css",
+    "settings.html",
+    "settings.js",
+    "settings.css",
+    "icons/",
+    "native-messaging-host/"
+  ]
+}

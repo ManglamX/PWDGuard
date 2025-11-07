@@ -5,9 +5,10 @@ import { AnalyzePassword } from './components/AnalyzePassword'
 import { GeneratePassword } from './components/GeneratePassword'
 import { PasswordHistory } from './components/PasswordHistory'
 import { Settings } from './components/Settings'
+import { ExtensionCredentials } from './components/ExtensionCredentials'
 import LightRays from './components/LightRays'
 
-type TabKey = 'analyze' | 'generate' | 'history' | 'settings'
+type TabKey = 'analyze' | 'generate' | 'history' | 'extension' | 'settings'
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabKey>('analyze')
@@ -16,6 +17,7 @@ function App() {
       { key: 'analyze', label: 'Analyze Password', icon: '🔍' },
       { key: 'generate', label: 'Generate Password', icon: '⚡' },
       { key: 'history', label: 'History', icon: '📜' },
+      { key: 'extension', label: 'Browser Passwords', icon: '🌐' },
       { key: 'settings', label: 'Settings', icon: '⚙️' },
     ],
     []
@@ -61,6 +63,7 @@ function App() {
           {activeTab === 'analyze' && <AnalyzePassword />}
           {activeTab === 'generate' && <GeneratePassword />}
           {activeTab === 'history' && <PasswordHistory />}
+          {activeTab === 'extension' && <ExtensionCredentials />}
           {activeTab === 'settings' && <Settings />}
         </main>
       </div>

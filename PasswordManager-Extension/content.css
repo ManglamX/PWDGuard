@@ -1,0 +1,445 @@
+/* PwdGuard Extension Content Styles */
+
+/* Save Prompt Overlay */
+#pwdguard-save-prompt {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2147483647;
+  animation: pwdguard-slide-in 0.3s ease-out;
+}
+
+.pwdguard-notification {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  min-width: 320px;
+  max-width: 400px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  border: 1px solid #e0e0e0;
+}
+
+.pwdguard-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.pwdguard-header img {
+  width: 24px;
+  height: 24px;
+}
+
+.pwdguard-header span {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.pwdguard-content {
+  margin-bottom: 15px;
+}
+
+.pwdguard-content p {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.pwdguard-username {
+  font-family: 'Courier New', monospace;
+  background: #f5f5f5;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #333;
+  word-break: break-all;
+}
+
+.pwdguard-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pwdguard-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.pwdguard-btn-primary {
+  background: #00bcd4;
+  color: white;
+}
+
+.pwdguard-btn-primary:hover {
+  background: #00acc1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+}
+
+.pwdguard-btn-secondary {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.pwdguard-btn-secondary:hover {
+  background: #e0e0e0;
+}
+
+.pwdguard-btn-text {
+  background: transparent;
+  color: #999;
+  padding: 8px 16px;
+}
+
+.pwdguard-btn-text:hover {
+  color: #666;
+  background: #f9f9f9;
+}
+
+/* Auto-fill Banner */
+#pwdguard-autofill-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2147483646;
+  animation: pwdguard-slide-down 0.3s ease-out;
+}
+
+.pwdguard-banner {
+  background: linear-gradient(135deg, #00bcd4 0%, #00acc1 100%);
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.pwdguard-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pwdguard-banner-content img {
+  width: 24px;
+  height: 24px;
+}
+
+.pwdguard-banner-content span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pwdguard-banner-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pwdguard-banner .pwdguard-btn-primary {
+  background: white;
+  color: #00bcd4;
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+.pwdguard-banner .pwdguard-btn-primary:hover {
+  background: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+.pwdguard-banner .pwdguard-btn-text {
+  color: white;
+  padding: 8px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.pwdguard-banner .pwdguard-btn-text:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Credential Selector */
+#pwdguard-credential-selector {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2147483647;
+  animation: pwdguard-fade-in 0.2s ease-out;
+}
+
+.pwdguard-selector-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+
+.pwdguard-selector-dialog {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+  min-width: 400px;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow: hidden;
+  animation: pwdguard-scale-in 0.2s ease-out;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.pwdguard-selector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.pwdguard-selector-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.pwdguard-btn-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.pwdguard-btn-close:hover {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.pwdguard-selector-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.pwdguard-credential-item {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.pwdguard-credential-item:hover {
+  background: #f9f9f9;
+}
+
+.pwdguard-credential-item:last-child {
+  border-bottom: none;
+}
+
+.pwdguard-credential-username {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.pwdguard-credential-date {
+  font-size: 12px;
+  color: #999;
+}
+
+/* Success Notification */
+.pwdguard-success-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2147483647;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.pwdguard-success-notification.pwdguard-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pwdguard-success-content {
+  background: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pwdguard-success-icon {
+  width: 20px;
+  height: 20px;
+  background: white;
+  color: #4caf50;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Animations */
+@keyframes pwdguard-slide-in {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pwdguard-slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pwdguard-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pwdguard-scale-in {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .pwdguard-notification,
+  .pwdguard-selector-dialog {
+    background: #2d2d2d;
+    border-color: #404040;
+  }
+  
+  .pwdguard-header,
+  .pwdguard-selector-header {
+    border-bottom-color: #404040;
+  }
+  
+  .pwdguard-header span,
+  .pwdguard-selector-header h3,
+  .pwdguard-credential-username {
+    color: #e0e0e0;
+  }
+  
+  .pwdguard-content p {
+    color: #b0b0b0;
+  }
+  
+  .pwdguard-username {
+    background: #1a1a1a;
+    color: #e0e0e0;
+  }
+  
+  .pwdguard-btn-secondary {
+    background: #404040;
+    color: #e0e0e0;
+  }
+  
+  .pwdguard-btn-secondary:hover {
+    background: #4a4a4a;
+  }
+  
+  .pwdguard-btn-text {
+    color: #808080;
+  }
+  
+  .pwdguard-btn-text:hover {
+    color: #b0b0b0;
+    background: #3a3a3a;
+  }
+  
+  .pwdguard-credential-item {
+    border-bottom-color: #404040;
+  }
+  
+  .pwdguard-credential-item:hover {
+    background: #3a3a3a;
+  }
+  
+  .pwdguard-credential-date {
+    color: #808080;
+  }
+  
+  .pwdguard-btn-close:hover {
+    background: #404040;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  #pwdguard-save-prompt {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+  }
+  
+  .pwdguard-notification {
+    min-width: auto;
+    max-width: none;
+  }
+  
+  .pwdguard-selector-dialog {
+    min-width: 90vw;
+    margin: 20px;
+  }
+}

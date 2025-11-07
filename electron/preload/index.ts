@@ -23,6 +23,21 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
   // ...
 })
 
+// Also expose as window.electron for extension integration
+contextBridge.exposeInMainWorld('electron', {
+  ipcRenderer: {
+    on(channel: string, listener: (...args: any[]) => void) {
+      ipcRenderer.on(channel, (event, ...args) => listener(...args))
+    },
+    removeListener(channel: string, listener: (...args: any[]) => void) {
+      ipcRenderer.removeListener(channel, listener)
+    },
+    invoke(channel: string, ...args: any[]) {
+      return ipcRenderer.invoke(channel, ...args)
+    }
+  }
+})
+
 // --------- Preload scripts loading ---------
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
   return new Promise(resolve => {

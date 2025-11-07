@@ -1,0 +1,9 @@
+{
+  "name": "com.pwdguard.native",
+  "description": "PwdGuard Native Messaging Host",
+  "path": "C:\\Users\\Manglam\\Desktop\\PWDGuard\\PasswordManager-Extension\\..\\native-host\\native-host.bat",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://gdoeffehblkfdgenamepbhajlifppoak/"
+  ]
+}

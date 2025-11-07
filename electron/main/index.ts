@@ -5,6 +5,7 @@ import path from 'node:path'
 import os from 'node:os'
 import fs from 'node:fs'
 import { update } from './update'
+import ExtensionIntegration from './extension-integration'
 
 const require = createRequire(import.meta.url)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -43,6 +44,9 @@ if (!app.requestSingleInstanceLock()) {
 let win: BrowserWindow | null = null
 const preload = path.join(__dirname, '../preload/index.mjs')
 const indexHtml = path.join(RENDERER_DIST, 'index.html')
+
+// Initialize extension integration
+const extensionIntegration = new ExtensionIntegration()
 
 async function createWindow() {
   // Get icon path - prefer ICO on Windows for better quality
@@ -93,6 +97,9 @@ async function createWindow() {
     return { action: 'deny' }
   })
 
+  // Initialize extension integration with main window
+  extensionIntegration.initialize(win)
+
   // Auto update
   update(win)
 }
@@ -101,6 +108,7 @@ app.whenReady().then(createWindow)
 
 app.on('window-all-closed', () => {
   win = null
+  extensionIntegration.cleanup()
   if (process.platform !== 'darwin') app.quit()
 })
 

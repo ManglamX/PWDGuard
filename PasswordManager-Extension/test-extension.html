@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PwdGuard Extension Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #00bcd4;
+            padding-bottom: 10px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #00bcd4;
+        }
+        .test-section h2 {
+            margin-top: 0;
+            color: #00bcd4;
+        }
+        button {
+            background: #00bcd4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #0097a7;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .success {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .error {
+            color: #f44336;
+            font-weight: bold;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status.connected {
+            background: #4caf50;
+            color: white;
+        }
+        .status.disconnected {
+            background: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 PwdGuard Extension Test Page</h1>
+        <p>Use this page to test if the PwdGuard extension is working correctly.</p>
+
+        <!-- Test 1: Extension Detection -->
+        <div class="test-section">
+            <h2>Test 1: Extension Detection</h2>
+            <p>Check if the extension is installed and accessible.</p>
+            <button onclick="testExtensionDetection()">Run Test</button>
+            <div id="test1-result" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Test 2: Connection Status -->
+        <div class="test-section">
+            <h2>Test 2: Native Host Connection</h2>
+            <p>Check if the extension can connect to the native host.</p>
+            <button onclick="testConnection()">Check Connection</button>
+            <div id="test2-result" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Test 3: Settings -->
+        <div class="test-section">
+            <h2>Test 3: Extension Settings</h2>
+            <p>View current extension settings.</p>
+            <button onclick="testSettings()">View Settings</button>
+            <button onclick="resetSettings()">Reset Settings</button>
+            <div id="test3-result" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Test 4: Credentials -->
+        <div class="test-section">
+            <h2>Test 4: Get Credentials</h2>
+            <p>Try to retrieve saved credentials for this domain.</p>
+            <button onclick="testGetCredentials()">Get Credentials</button>
+            <div id="test4-result" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Test 5: Form Detection -->
+        <div class="test-section">
+            <h2>Test 5: Form Detection & Save</h2>
+            <p>Test if the extension can detect and save credentials from this form.</p>
+            <form id="test-form" onsubmit="return false;">
+                <label>Username/Email:</label>
+                <input type="text" name="username" id="username" placeholder="test@example.com" autocomplete="username">
+                
+                <label>Password:</label>
+                <input type="password" name="password" id="password" placeholder="password123" autocomplete="current-password">
+                
+                <button type="submit">Submit (Test Save)</button>
+            </form>
+            <button onclick="manualSave()">Manual Save</button>
+            <div id="test5-result" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Test 6: Auto-fill -->
+        <div class="test-section">
+            <h2>Test 6: Auto-fill</h2>
+            <p>Test if the extension can auto-fill credentials.</p>
+            <button onclick="testAutoFill()">Trigger Auto-fill</button>
+            <div id="test6-result" class="result" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Test 1: Extension Detection
+        function testExtensionDetection() {
+            const result = document.getElementById('test1-result');
+            result.style.display = 'block';
+            result.innerHTML = 'Testing...';
+
+            try {
+                if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.id) {
+                    result.innerHTML = `<span class="success">✓ Extension Detected</span>\nExtension ID: ${chrome.runtime.id}`;
+                } else {
+                    result.innerHTML = '<span class="error">✗ Extension Not Detected</span>\nMake sure the extension is installed and enabled.';
+                }
+            } catch (error) {
+                result.innerHTML = `<span class="error">✗ Error:</span> ${error.message}`;
+            }
+        }
+
+        // Test 2: Connection Status
+        function testConnection() {
+            const result = document.getElementById('test2-result');
+            result.style.display = 'block';
+            result.innerHTML = 'Checking connection...';
+
+            chrome.runtime.sendMessage({ type: 'get-connection-status' }, (response) => {
+                if (chrome.runtime.lastError) {
+                    result.innerHTML = `<span class="error">✗ Error:</span> ${chrome.runtime.lastError.message}`;
+                    return;
+                }
+
+                if (response && response.status) {
+                    const statusClass = response.status === 'connected' ? 'success' : 'error';
+                    const statusIcon = response.status === 'connected' ? '✓' : '✗';
+                    result.innerHTML = `<span class="${statusClass}">${statusIcon} Status: ${response.status}</span>`;
+                } else {
+                    result.innerHTML = '<span class="error">✗ No response from extension</span>';
+                }
+            });
+        }
+
+        // Test 3: Settings
+        function testSettings() {
+            const result = document.getElementById('test3-result');
+            result.style.display = 'block';
+            result.innerHTML = 'Loading settings...';
+
+            chrome.storage.local.get(['settings'], (data) => {
+                if (chrome.runtime.lastError) {
+                    result.innerHTML = `<span class="error">✗ Error:</span> ${chrome.runtime.lastError.message}`;
+                    return;
+                }
+
+                result.innerHTML = `<span class="success">✓ Settings Loaded</span>\n${JSON.stringify(data.settings, null, 2)}`;
+            });
+        }
+
+        function resetSettings() {
+            const result = document.getElementById('test3-result');
+            result.style.display = 'block';
+            result.innerHTML = 'Resetting settings...';
+
+            const defaultSettings = {
+                enabled: true,
+                httpsOnly: true,
+                allowLocalhost: true,
+                autoFillEnabled: true,
+                notificationsEnabled: true,
+                neverSaveList: [],
+                theme: 'light'
+            };
+
+            chrome.storage.local.set({ settings: defaultSettings }, () => {
+                if (chrome.runtime.lastError) {
+                    result.innerHTML = `<span class="error">✗ Error:</span> ${chrome.runtime.lastError.message}`;
+                    return;
+                }
+
+                result.innerHTML = `<span class="success">✓ Settings Reset</span>\n${JSON.stringify(defaultSettings, null, 2)}\n\nReload the page to apply changes.`;
+            });
+        }
+
+        // Test 4: Get Credentials
+        function testGetCredentials() {
+            const result = document.getElementById('test4-result');
+            result.style.display = 'block';
+            result.innerHTML = 'Requesting credentials...';
+
+            chrome.runtime.sendMessage({
+                type: 'get-credentials',
+                domain: window.location.hostname
+            }, (response) => {
+                if (chrome.runtime.lastError) {
+                    result.innerHTML = `<span class="error">✗ Error:</span> ${chrome.runtime.lastError.message}`;
+                    return;
+                }
+
+                if (response && response.credentials) {
+                    if (response.credentials.length > 0) {
+                        result.innerHTML = `<span class="success">✓ Found ${response.credentials.length} credential(s)</span>\n${JSON.stringify(response.credentials, null, 2)}`;
+                    } else {
+                        result.innerHTML = '<span class="success">✓ No credentials saved for this domain</span>';
+                    }
+                } else {
+                    result.innerHTML = '<span class="error">✗ No response from extension</span>';
+                }
+            });
+        }
+
+        // Test 5: Manual Save
+        function manualSave() {
+            const result = document.getElementById('test5-result');
+            result.style.display = 'block';
+            result.innerHTML = 'Triggering manual save...';
+
+            chrome.runtime.sendMessage({ type: 'manual-save' }, (response) => {
+                if (chrome.runtime.lastError) {
+                    result.innerHTML = `<span class="error">✗ Error:</span> ${chrome.runtime.lastError.message}`;
+                    return;
+                }
+
+                result.innerHTML = '<span class="success">✓ Manual save triggered</span>\nCheck if save prompt appeared on the page.';
+            });
+        }
+
+        // Test 6: Auto-fill
+        function testAutoFill() {
+            const result = document.getElementById('test6-result');
+            result.style.display = 'block';
+            result.innerHTML = 'Triggering auto-fill...';
+
+            chrome.runtime.sendMessage({ type: 'manual-autofill' }, (response) => {
+                if (chrome.runtime.lastError) {
+                    result.innerHTML = `<span class="error">✗ Error:</span> ${chrome.runtime.lastError.message}`;
+                    return;
+                }
+
+                result.innerHTML = '<span class="success">✓ Auto-fill triggered</span>\nCheck if form fields were filled.';
+            });
+        }
+
+        // Auto-run basic tests on load
+        window.addEventListener('load', () => {
+            console.log('PwdGuard Test Page Loaded');
+            console.log('Domain:', window.location.hostname);
+            console.log('Protocol:', window.location.protocol);
+        });
+    </script>
+</body>
+</html>

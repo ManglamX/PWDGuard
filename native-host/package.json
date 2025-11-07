@@ -1,0 +1,23 @@
+{
+  "name": "pwdguard-native-host",
+  "version": "1.0.0",
+  "description": "Native Messaging Host for PwdGuard Chrome Extension",
+  "main": "native-host.js",
+  "author": "PwdGuard Team",
+  "license": "MIT",
+  "keywords": [
+    "native-messaging",
+    "chrome-extension",
+    "password-manager",
+    "encryption"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "start": "node native-host.js",
+    "test": "echo \"No tests configured yet\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

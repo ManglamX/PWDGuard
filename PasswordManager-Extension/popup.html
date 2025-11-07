@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PwdGuard Password Manager</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="popup-header">
+      <div class="header-logo">
+        <img src="icons/icon48.png" alt="PwdGuard">
+        <h1>PwdGuard</h1>
+      </div>
+      <div class="connection-status" id="connection-status">
+        <span class="status-indicator" id="status-indicator"></span>
+        <span class="status-text" id="status-text">Connecting...</span>
+      </div>
+    </div>
+
+    <!-- Current Site Info -->
+    <div class="site-info" id="site-info">
+      <div class="site-icon">🔒</div>
+      <div class="site-details">
+        <div class="site-domain" id="site-domain">Loading...</div>
+        <div class="site-credentials" id="site-credentials">
+          <span class="credential-count" id="credential-count">0</span> saved passwords
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <button class="action-btn" id="autofill-btn" title="Auto-fill credentials (Ctrl+Shift+L)">
+        <span class="btn-icon">🔑</span>
+        <span class="btn-text">Auto-fill</span>
+      </button>
+      <button class="action-btn" id="save-btn" title="Save current credentials (Ctrl+Shift+S)">
+        <span class="btn-icon">💾</span>
+        <span class="btn-text">Save</span>
+      </button>
+      <button class="action-btn" id="generate-btn" title="Generate strong password">
+        <span class="btn-icon">⚡</span>
+        <span class="btn-text">Generate</span>
+      </button>
+    </div>
+
+    <!-- Settings Toggle -->
+    <div class="settings-section">
+      <div class="setting-item">
+        <div class="setting-info">
+          <span class="setting-label">Extension Enabled</span>
+          <span class="setting-description">Capture and auto-fill passwords</span>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="enabled-toggle" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      
+      <div class="setting-item">
+        <div class="setting-info">
+          <span class="setting-label">Auto-fill</span>
+          <span class="setting-description">Automatically fill saved credentials</span>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="autofill-toggle" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Footer Actions -->
+    <div class="popup-footer">
+      <button class="footer-btn" id="open-desktop-btn">
+        <span>🖥️</span>
+        Open Desktop App
+      </button>
+      <button class="footer-btn" id="settings-btn">
+        <span>⚙️</span>
+        Settings
+      </button>
+    </div>
+
+    <!-- Version Info -->
+    <div class="version-info">
+      Version 1.0.0
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

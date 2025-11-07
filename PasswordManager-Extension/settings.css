@@ -1,0 +1,646 @@
+/* PwdGuard Extension Settings Page Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: #333;
+}
+
+.settings-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  min-height: 100vh;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.settings-header {
+  background: linear-gradient(135deg, #00bcd4 0%, #00acc1 100%);
+  color: white;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-content img {
+  width: 48px;
+  height: 48px;
+}
+
+.header-content h1 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Main Content */
+.settings-main {
+  padding: 32px;
+}
+
+/* Settings Section */
+.settings-section {
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.settings-section:last-child {
+  border-bottom: none;
+}
+
+.settings-section h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.section-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Setting Row */
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.setting-row:last-child {
+  border-bottom: none;
+}
+
+.setting-info {
+  flex: 1;
+}
+
+.setting-info label {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+.setting-info p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 28px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .toggle-slider {
+  background-color: #00bcd4;
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(24px);
+}
+
+/* Never Save List */
+.never-save-list {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  min-height: 100px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.never-save-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.never-save-item:last-child {
+  margin-bottom: 0;
+}
+
+.never-save-domain {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.remove-site-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.remove-site-btn:hover {
+  background: #d32f2f;
+}
+
+.empty-list {
+  text-align: center;
+  color: #999;
+  padding: 32px;
+  font-size: 14px;
+}
+
+/* Add Site Form */
+.add-site-form {
+  display: flex;
+  gap: 12px;
+}
+
+.text-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: #00bcd4;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: #00bcd4;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #00acc1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+}
+
+.btn-secondary {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.btn-secondary:hover {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.btn-danger {
+  background: #f44336;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #d32f2f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+/* Keyboard Shortcuts */
+.shortcut-list {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.shortcut-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.shortcut-item:last-child {
+  margin-bottom: 0;
+}
+
+.shortcut-label {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.shortcut-keys {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 13px;
+  color: #666;
+}
+
+kbd {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.shortcut-note {
+  font-size: 13px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Connection Status */
+.connection-info {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.connection-status-large {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.status-icon {
+  font-size: 48px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.status-icon.connected {
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+}
+
+.status-icon.disconnected {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+}
+
+.status-details h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.status-details p {
+  font-size: 14px;
+  color: #666;
+}
+
+.connection-help {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 16px;
+}
+
+.connection-help h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.connection-help ul {
+  list-style: none;
+  padding: 0;
+}
+
+.connection-help li {
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.connection-help li:before {
+  content: "•";
+  position: absolute;
+  left: 8px;
+  color: #00bcd4;
+  font-weight: bold;
+}
+
+.connection-help a {
+  color: #00bcd4;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.connection-help a:hover {
+  text-decoration: underline;
+}
+
+/* Theme Selector */
+.theme-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.theme-option {
+  cursor: pointer;
+}
+
+.theme-option input {
+  display: none;
+}
+
+.theme-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.theme-preview span:first-child {
+  font-size: 32px;
+}
+
+.theme-preview span:last-child {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+}
+
+.theme-option input:checked + .theme-preview {
+  border-color: #00bcd4;
+  background: #f0f9fa;
+}
+
+.theme-light {
+  background: white;
+}
+
+.theme-dark {
+  background: #2d2d2d;
+}
+
+.theme-dark span:last-child {
+  color: #e0e0e0;
+}
+
+.theme-auto {
+  background: linear-gradient(135deg, white 0%, white 50%, #2d2d2d 50%, #2d2d2d 100%);
+}
+
+/* About Section */
+.about-info {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.about-info p {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.about-info p strong {
+  color: #333;
+  font-size: 16px;
+}
+
+.about-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.link-btn {
+  color: #00bcd4;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.link-btn:hover {
+  color: #00acc1;
+  text-decoration: underline;
+}
+
+/* Reset Section */
+.reset-section {
+  background: #fff3e0;
+  border: 2px solid #ffb74d;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.reset-section p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+/* Footer */
+.settings-footer {
+  background: #f5f5f5;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #e0e0e0;
+}
+
+.settings-footer p {
+  font-size: 13px;
+  color: #999;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .settings-main {
+    padding: 20px;
+  }
+  
+  .settings-header {
+    padding: 20px;
+  }
+  
+  .header-content h1 {
+    font-size: 22px;
+  }
+  
+  .theme-selector {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-links {
+    flex-direction: column;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+  
+  .settings-container {
+    background: #2d2d2d;
+  }
+  
+  .settings-section {
+    border-bottom-color: #404040;
+  }
+  
+  .settings-section h2,
+  .setting-info label,
+  .status-details h3,
+  .connection-help h4,
+  .about-info p strong {
+    color: #e0e0e0;
+  }
+  
+  .section-description,
+  .setting-info p,
+  .status-details p,
+  .connection-help li,
+  .about-info p {
+    color: #b0b0b0;
+  }
+  
+  .setting-row {
+    border-bottom-color: #404040;
+  }
+  
+  .never-save-list,
+  .connection-info,
+  .about-info,
+  .shortcut-list {
+    background: #1a1a1a;
+  }
+  
+  .never-save-item,
+  .shortcut-item,
+  .connection-help {
+    background: #2d2d2d;
+  }
+  
+  .text-input {
+    background: #1a1a1a;
+    border-color: #404040;
+    color: #e0e0e0;
+  }
+  
+  kbd {
+    background: #404040;
+    border-color: #555;
+    color: #e0e0e0;
+  }
+  
+  .settings-footer {
+    background: #1a1a1a;
+    border-top-color: #404040;
+  }
+}
